@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\DeveloperController;
+use App\Http\Controllers\Admin\GameController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,4 +19,12 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::resource('games', GameController::class);
+    // ->middleware('auth', 'verified');
+    Route::resource('developers', DeveloperController::class);
+    // ->middleware('auth', 'verified');
+});
+
+
+require __DIR__ . '/auth.php';
