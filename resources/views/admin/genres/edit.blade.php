@@ -1,6 +1,6 @@
 @extends('layouts.games-layout')
 
-@section('title', 'Modifica Developer')
+@section('title', 'Lista Generi')
 
 @section('content')
 
@@ -16,20 +16,20 @@
             </div>
         @endif
 
-        <h1 class="mb-4">Modifica Developer</h1>
+        <h1 class="mb-4">Modifica generi</h1>
 
-        <form action="{{ route('admin.developers.update', $developer) }}" method="POST">
+        <form action="{{ route('admin.genres.update', $genre) }}" method="POST">
             @csrf
             @method('PUT')
 
             <div class="mb-3">
-                <label for="name" class="form-label">Nome Developer</label>
+                <label for="name" class="form-label">Nome generi</label>
                 <input type="text" class="form-control" id="name" name="name"
-                    value="{{ old('name', $developer->name) }}" required>
+                    value="{{ old('name', $genre->name) }}" required>
             </div>
 
             <div class=" d-flex justify-content-between">
-                <a href="{{ route('admin.developers.index') }}" class="btn btn-secondary">Annulla</a>
+                <a href="{{ route('admin.genres.index') }}" class="btn btn-secondary">Annulla</a>
                 <button type="submit" class="btn btn-primary">Salva modifiche</button>
             </div>
         </form>

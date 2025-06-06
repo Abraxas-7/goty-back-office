@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Developer;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class DeveloperController extends Controller
 {
@@ -48,7 +49,7 @@ class DeveloperController extends Controller
      */
     public function show(Developer $developer)
     {
-        return view('admin.developers.show', compact('developer'));
+        abort(404);
     }
 
     /**
@@ -64,13 +65,28 @@ class DeveloperController extends Controller
      */
     public function update(Request $request, Developer $developer)
     {
+        $request->validate([
+            'name' => [
+                'required',
+                'string',
+                'max:255',
+                Rule::unique('developers', 'name')->ignoreModel($developer),
+            ],
+        ], [
+            'name.required' => 'Il nome è obbligatorio!',
+            'name.unique' => 'Questa console esiste già!',
+            'name.max' => 'Il nome non può superare i 255 caratteri.',
+        ]);
+
         $data = $request->all();
 
         $developer->name = $data['name'];
 
         $developer->update();
 
-        return redirect()->route('admin.developers.show', $developer);
+        return redirect()->route('admin.developers.index')
+            ->with('message', 'Developer aggiornato con successo!')
+            ->with('message_type', 'success');;
     }
 
     /**

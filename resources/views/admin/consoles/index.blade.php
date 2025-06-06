@@ -1,6 +1,6 @@
 @extends('layouts.games-layout')
 
-@section('title', 'Lista Developers')
+@section('title', 'Lista Consoles')
 
 @section('content')
 
@@ -19,7 +19,6 @@
         </div>
     @endif
 
-
     <div class="mt-3 row g-3">
         <div class="col-8">
             <table class="table table-striped table-bordered ">
@@ -31,41 +30,41 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($developers as $developer)
+                    @foreach ($consoles as $console)
                         <tr>
-                            <td class="align-middle">{{ $developer->name }}</td>
+                            <td class="align-middle">{{ $console->name }}</td>
                             <td class="text-center">
-                                <a href="{{ route('admin.developers.edit', $developer) }}"
+                                <a href="{{ route('admin.consoles.edit', $console) }}"
                                     class="btn btn-outline-warning border-2">
                                     <i class="bi bi-pencil-square"></i>
                                 </a>
                             </td>
                             <td class="text-center">
                                 <button type="button" class="btn btn-outline-danger border-2" data-bs-toggle="modal"
-                                    data-bs-target="#deleteDeveloperModal-{{ $developer->id }}">
+                                    data-bs-target="#deleteConsoleModal-{{ $console->id }}">
                                     <i class="bi bi-trash"></i>
                                 </button>
 
                                 <!-- Modale eliminazione form -->
-                                <div class="modal fade" id="deleteDeveloperModal-{{ $developer->id }}" tabindex="-1"
-                                    aria-labelledby="deleteDeveloperModalLabel-{{ $developer->id }}" aria-hidden="true">
+                                <div class="modal fade" id="deleteConsoleModal-{{ $console->id }}" tabindex="-1"
+                                    aria-labelledby="deleteConsoleModalLabel-{{ $console->id }}" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <h1 class="modal-title fs-5"
-                                                    id="deleteDeveloperModalLabel-{{ $developer->id }}">
+                                                    id="deleteConsoleModalLabel-{{ $console->id }}">
                                                     Conferma eliminazione
                                                 </h1>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                     aria-label="Chiudi"></button>
                                             </div>
                                             <div class="modal-body">
-                                                Sei sicuro di voler eliminare <strong>{{ $developer->name }}</strong>?
+                                                Sei sicuro di voler eliminare <strong>{{ $console->name }}</strong>?
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary"
                                                     data-bs-dismiss="modal">Annulla</button>
-                                                <form action="{{ route('admin.developers.destroy', $developer) }}"
+                                                <form action="{{ route('admin.consoles.destroy', $console) }}"
                                                     method="POST" class="d-inline">
                                                     @csrf
                                                     @method('DELETE')
@@ -85,14 +84,14 @@
         </div>
 
         <div class="col-4">
-            <form action="{{ route('admin.developers.store') }}" method="POST">
+            <form action="{{ route('admin.consoles.store') }}" method="POST">
                 @csrf
 
-                <h3 class="text-center mb-3">Aggiungi developer</h3>
+                <h3 class="text-center mb-3">Aggiungi console</h3>
 
                 <div class="row d-flex justify-content-center">
                     <div class="col-10">
-                        <label for="name" class="form-label">Nome nuova casa produttrice</label>
+                        <label for="name" class="form-label">Nome nuova console</label>
                         <input type="text" class="form-control" id="name" name="name" required>
                     </div>
 
@@ -100,9 +99,9 @@
                         <button type="submit" class="btn btn-primary mt-3">Aggiungi console</button>
                     </div>
                 </div>
+
             </form>
         </div>
     </div>
-
 
 @endsection

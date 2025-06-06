@@ -1,20 +1,11 @@
 <?php
 
 return [
-
-    /*
-    |--------------------------------------------------------------------------
-    | Videogame Developers
-    |--------------------------------------------------------------------------
-    | Elenco di case sviluppatrici di videogiochi
-    */
-
     'list' => [
         'Kojima Productions',
         'FromSoftware',
         'Naughty Dog',
         'Rockstar Games',
-        'CD Projekt Red',
         'Ubisoft',
         'Bethesda Game Studios',
         'Santa Monica Studio',
@@ -27,7 +18,6 @@ return [
         'Respawn Entertainment',
         'Remedy Entertainment',
         'Larian Studios',
-        'Nintendo EPD',
         'Game Freak',
         'Monolith Soft',
         'PlatinumGames',
@@ -40,5 +30,20 @@ return [
         'Tango Gameworks',
         'Housemarque',
         'Treyarch',
+        'Atlus',
+        'Mojang',
+        'Nintendo',
+        'CD Projekt',
+        'EA Sports',
+        'miHoYo',
+        'ConcernedApe',
+        'Epic Games',
+        'InnerSloth',
+        'Studio MDHR',
+        'Riot Games',
+        'Re-Logic',
+        'Blizzard Entertainment',
+        'Hello Games',
+        'Maddy Makes Games',
     ],
 ];
