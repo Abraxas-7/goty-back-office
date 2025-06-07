@@ -90,6 +90,10 @@
                 </table>
             @endif
 
+            <div class="mt-3">
+                {{ $developers->links('pagination::bootstrap-5') }}
+            </div>
+
         </div>
 
         <div class="col-4">
@@ -111,6 +115,5 @@
             </form>
         </div>
     </div>
-
 
 @endsection

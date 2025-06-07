@@ -45,7 +45,7 @@ class ConsoleController extends Controller
             }
         }
 
-        $consoles = $query->get();
+        $consoles = $query->paginate(20)->withQueryString();
 
         return view('admin.consoles.index', compact('consoles'));
     }

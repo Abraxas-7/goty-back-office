@@ -45,7 +45,7 @@ class DeveloperController extends Controller
             }
         }
 
-        $developers = $query->get();
+        $developers = $query->paginate(20)->withQueryString();
 
         return view('admin.developers.index', compact('developers'));
     }

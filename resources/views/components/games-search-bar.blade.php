@@ -58,7 +58,7 @@
                     <a href="{{ $action }}" class="btn btn-secondary w-100">Azzera filtri</a>
                 </div>
                 <div class="col-md-4">
-                    <button type="submit" class="btn btn-primary w-100">Cerca</button>
+                    <button type="submit" class="btn btn-success w-100">Cerca</button>
                 </div>
             </div>
         </div>

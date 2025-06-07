@@ -45,7 +45,7 @@ class GenreController extends Controller
             }
         }
 
-        $genres = $query->get();
+        $genres = $query->paginate(20)->withQueryString();
 
         return view('admin.genres.index', compact('genres'));
     }

@@ -21,7 +21,7 @@
         </div>
 
         <div class="col-2 pe-0">
-            <button type="submit" class="btn btn-primary w-100">Cerca</button>
+            <button type="submit" class="btn btn-success w-100">Cerca</button>
         </div>
     </form>
 </div>

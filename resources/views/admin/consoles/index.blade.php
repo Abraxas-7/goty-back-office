@@ -89,6 +89,10 @@
                     </tbody>
                 </table>
             @endif
+
+            <div class="mt-3">
+                {{ $consoles->links('pagination::bootstrap-5') }}
+            </div>
         </div>
 
         <div class="col-4">

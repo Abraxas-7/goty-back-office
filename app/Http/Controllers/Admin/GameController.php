@@ -67,7 +67,7 @@ class GameController extends Controller
             }
         }
 
-        $games = $query->get();
+        $games = $query->paginate(20)->withQueryString();
 
         return view('admin.games.index', compact('games', 'consoles', 'genres', 'developers'));
     }

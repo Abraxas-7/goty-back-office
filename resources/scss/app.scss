@@ -11,3 +11,24 @@ body {
 main {
   flex: 1;
 }
+
+/* Colore testo bianco e sfondo nero per link attivi */
+.pagination .page-item.active .page-link {
+    color: #333;                /* testo grigio scuro */
+    border-color: #ddd;         /* bordo grigio chiaro */
+    background-color: #f8f9fa;  /* sfondo grigio chiarissimo */
+}
+
+/* Link normali: sfondo bianco, testo grigio scuro */
+.pagination .page-link {
+    background-color: #fff;     /* sfondo bianco */
+    color: #333;                /* testo grigio scuro */
+    border: 1px solid #ddd;     /* bordo grigio chiaro */
+}
+
+/* Hover: sfondo grigio chiaro */
+.pagination .page-link:hover {
+    color: #333;                /* testo grigio scuro */
+    background-color: #e9ecef;  /* sfondo grigio più chiaro */
+    border-color: #ddd; 
+}
