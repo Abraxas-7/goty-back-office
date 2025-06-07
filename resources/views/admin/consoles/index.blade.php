@@ -19,68 +19,76 @@
         </div>
     @endif
 
+    <x-search-bar :action="route('admin.consoles.index')" />
+
     <div class="mt-3 row g-3">
         <div class="col-8">
-            <table class="table table-striped table-bordered ">
-                <thead class="table-dark">
-                    <tr class="fs-5">
-                        <th class="col-10">Nome</th>
-                        <th class="col-1"></th>
-                        <th class="col-1"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($consoles as $console)
-                        <tr>
-                            <td class="align-middle">{{ $console->name }}</td>
-                            <td class="text-center">
-                                <a href="{{ route('admin.consoles.edit', $console) }}"
-                                    class="btn btn-outline-warning border-2">
-                                    <i class="bi bi-pencil-square"></i>
-                                </a>
-                            </td>
-                            <td class="text-center">
-                                <button type="button" class="btn btn-outline-danger border-2" data-bs-toggle="modal"
-                                    data-bs-target="#deleteConsoleModal-{{ $console->id }}">
-                                    <i class="bi bi-trash"></i>
-                                </button>
+            @if ($consoles->count() == 0)
+                <div class="text-center py-5">
+                    <h2 class="text-center">Nessuna console trovata</h2>
+                </div>
+            @else
+                <table class="table table-striped table-bordered ">
+                    <thead class="table-dark">
+                        <tr class="fs-5">
+                            <th class="col-10">Nome</th>
+                            <th class="col-1"></th>
+                            <th class="col-1"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($consoles as $console)
+                            <tr>
+                                <td class="align-middle">{{ $console->name }}</td>
+                                <td class="text-center">
+                                    <a href="{{ route('admin.consoles.edit', $console) }}"
+                                        class="btn btn-outline-warning border-2">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </a>
+                                </td>
+                                <td class="text-center">
+                                    <button type="button" class="btn btn-outline-danger border-2" data-bs-toggle="modal"
+                                        data-bs-target="#deleteConsoleModal-{{ $console->id }}">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
 
-                                <!-- Modale eliminazione form -->
-                                <div class="modal fade" id="deleteConsoleModal-{{ $console->id }}" tabindex="-1"
-                                    aria-labelledby="deleteConsoleModalLabel-{{ $console->id }}" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h1 class="modal-title fs-5"
-                                                    id="deleteConsoleModalLabel-{{ $console->id }}">
-                                                    Conferma eliminazione
-                                                </h1>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                    aria-label="Chiudi"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                Sei sicuro di voler eliminare <strong>{{ $console->name }}</strong>?
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary"
-                                                    data-bs-dismiss="modal">Annulla</button>
-                                                <form action="{{ route('admin.consoles.destroy', $console) }}"
-                                                    method="POST" class="d-inline">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger">
-                                                        Elimina
-                                                    </button>
-                                                </form>
+                                    <!-- Modale eliminazione form -->
+                                    <div class="modal fade" id="deleteConsoleModal-{{ $console->id }}" tabindex="-1"
+                                        aria-labelledby="deleteConsoleModalLabel-{{ $console->id }}" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5"
+                                                        id="deleteConsoleModalLabel-{{ $console->id }}">
+                                                        Conferma eliminazione
+                                                    </h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Chiudi"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Sei sicuro di voler eliminare <strong>{{ $console->name }}</strong>?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">Annulla</button>
+                                                    <form action="{{ route('admin.consoles.destroy', $console) }}"
+                                                        method="POST" class="d-inline">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-danger">
+                                                            Elimina
+                                                        </button>
+                                                    </form>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            @endif
         </div>
 
         <div class="col-4">

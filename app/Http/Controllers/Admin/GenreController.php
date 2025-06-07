@@ -12,9 +12,40 @@ class GenreController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $genres = Genre::all();
+        $query = Genre::query();
+
+        if ($request->filled('search')) {
+            $query->where('name', 'like', '%' . $request->input('search') . '%');
+        }
+
+        if ($request->filled('sort')) {
+            switch ($request->input('sort')) {
+                case 'asc':
+                    $query->orderBy('name', 'asc');
+                    break;
+                case 'desc':
+                    $query->orderBy('name', 'desc');
+                    break;
+                case 'recent':
+                    $query->orderBy('created_at', 'desc');
+                    break;
+                case 'oldest':
+                    $query->orderBy('created_at', 'asc');
+                    break;
+                case 'updated_recent':
+                    $query->orderBy('updated_at', 'desc');
+                    break;
+                case 'updated_oldest':
+                    $query->orderBy('updated_at', 'asc');
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        $genres = $query->get();
 
         return view('admin.genres.index', compact('genres'));
     }
