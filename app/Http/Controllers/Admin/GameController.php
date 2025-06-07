@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Console;
+use App\Models\Developer;
 use App\Models\Game;
+use App\Models\Genre;
 use Illuminate\Http\Request;
 
 class GameController extends Controller
@@ -11,11 +14,62 @@ class GameController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $games = Game::all();
+        $consoles = Console::all();
+        $genres = Genre::all();
+        $developers = Developer::all();
 
-        return view('admin.games.index', compact('games'));
+        $query = Game::query();
+
+        if ($request->filled('search')) {
+            $query->where('title', 'like', '%' . $request->input('search') . '%');
+        }
+
+        if ($request->filled('console')) {
+            $query->whereHas('consoles', function ($q) use ($request) {
+                $q->where('consoles.id', $request->input('console'));;
+            });
+        }
+
+        if ($request->filled('genre')) {
+            $query->whereHas('genres', function ($q) use ($request) {
+                $q->where('genres.id', $request->input('genre'));
+            });
+        }
+
+        if ($request->filled('developer')) {
+            $query->where('developer_id', $request->input('developer'));
+        }
+
+        if ($request->filled('sort')) {
+            switch ($request->input('sort')) {
+                case 'asc':
+                    $query->orderBy('title', 'asc');
+                    break;
+                case 'desc':
+                    $query->orderBy('title', 'desc');
+                    break;
+                case 'recent':
+                    $query->orderBy('created_at', 'desc');
+                    break;
+                case 'oldest':
+                    $query->orderBy('created_at', 'asc');
+                    break;
+                case 'updated_recent':
+                    $query->orderBy('updated_at', 'desc');
+                    break;
+                case 'updated_oldest':
+                    $query->orderBy('updated_at', 'asc');
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        $games = $query->get();
+
+        return view('admin.games.index', compact('games', 'consoles', 'genres', 'developers'));
     }
 
     /**

@@ -19,6 +19,8 @@
         </div>
     @endif
 
+    <x-games-search-bar :action="route('admin.games.index')" />
+
     <div class="mt-5">
         <table class="table table-striped table-bordered ">
             <thead class="table-dark">
