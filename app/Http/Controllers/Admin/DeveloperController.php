@@ -60,19 +60,19 @@ class DeveloperController extends Controller
      */
     public function store(Request $request)
     {
-        $developer = Developer::firstOrCreate([
-            'name' => $request->input('name'),
+        $validated = $request->validate([
+            'name' => 'required|string|max:255|unique:developers,name',
+        ], [
+            'name.required' => 'Il nome è obbligatorio!',
+            'name.unique' => 'Questo developer esiste già!',
+            'name.max' => 'Il nome non può superare i 255 caratteri.',
         ]);
 
-        if ($developer->wasRecentlyCreated) {
-            return redirect()->route('admin.developers.index')
-                ->with('message', 'Developer aggiunto con successo.')
-                ->with('message_type', 'success');;
-        } else {
-            return redirect()->route('admin.developers.index')
-                ->with('message', 'Developer già esistente.')
-                ->with('message_type', 'error');;
-        }
+        Developer::create($validated);
+
+        return redirect()->route('admin.developers.index')
+            ->with('message', 'Developer aggiunto con successo.')
+            ->with('message_type', 'success');
     }
 
     /**
@@ -117,7 +117,7 @@ class DeveloperController extends Controller
 
         return redirect()->route('admin.developers.index')
             ->with('message', 'Developer aggiornato con successo!')
-            ->with('message_type', 'success');;
+            ->with('message_type', 'success');
     }
 
     /**
@@ -127,6 +127,8 @@ class DeveloperController extends Controller
     {
         $developer->delete();
 
-        return redirect()->route('admin.developers.index');
+        return redirect()->route('admin.developers.index')
+            ->with('message', 'Developer eliminato con successo!')
+            ->with('message_type', 'success');
     }
 }

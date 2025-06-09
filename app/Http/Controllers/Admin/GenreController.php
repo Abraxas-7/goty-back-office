@@ -60,19 +60,19 @@ class GenreController extends Controller
      */
     public function store(Request $request)
     {
-        $genre = Genre::firstOrCreate([
-            'name' => $request->input('name'),
+        $validated = $request->validate([
+            'name' => 'required|string|max:255|unique:genres,name',
+        ], [
+            'name.required' => 'Il nome è obbligatorio!',
+            'name.unique' => 'Questo genere esiste già!',
+            'name.max' => 'Il nome non può superare i 255 caratteri.',
         ]);
 
-        if ($genre->wasRecentlyCreated) {
-            return redirect()->route('admin.genres.index')
-                ->with('message', 'Genere aggiunto con successo.')
-                ->with('message_type', 'success');;
-        } else {
-            return redirect()->route('admin.genres.index')
-                ->with('message', 'Genere già esistente.')
-                ->with('message_type', 'error');;
-        }
+        Genre::create($validated);
+
+        return redirect()->route('admin.genres.index')
+            ->with('message', 'Genere aggiunto con successo!')
+            ->with('message_type', 'success');
     }
 
     /**
@@ -117,7 +117,7 @@ class GenreController extends Controller
 
         return redirect()->route('admin.genres.index')
             ->with('message', 'Genere aggiornato con successo!')
-            ->with('message_type', 'success');;
+            ->with('message_type', 'success');
     }
 
     /**
@@ -127,6 +127,8 @@ class GenreController extends Controller
     {
         $genre->delete();
 
-        return redirect()->route('admin.genres.index');
+        return redirect()->route('admin.genres.index')
+            ->with('message', 'Genere eliminato con successo!')
+            ->with('message_type', 'success');
     }
 }
