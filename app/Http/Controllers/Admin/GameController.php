@@ -8,6 +8,7 @@ use App\Models\Developer;
 use App\Models\Game;
 use App\Models\Genre;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class GameController extends Controller
 {
@@ -77,7 +78,11 @@ class GameController extends Controller
      */
     public function create()
     {
-        return view('admin.games.create');
+        $consoles = Console::orderBy('name')->get();;
+        $genres = Genre::orderBy('name')->get();;
+        $developers = Developer::orderBy('name')->get();;
+
+        return view('admin.games.create', compact('consoles', 'genres', 'developers'));
     }
 
     /**
@@ -90,9 +95,14 @@ class GameController extends Controller
         $newGame = new Game();
 
         $newGame->title = $data['title'];
-        $newGame->developer_id = $data['developer'];
-        $newGame->short_descriprion = $data['short_descriprion'];
+        $newGame->developer_id = $data['developer_id'];
+        $newGame->short_description = $data['short_description'];
         $newGame->release_date = $data['release_date'];
+
+        if (array_key_exists('cover_image', $data)) {
+            $img_path = Storage::put('games/covers', $data['cover_image']);
+            $newGame->cover_image = $img_path;
+        }
 
         $newGame->save();
 
@@ -100,7 +110,11 @@ class GameController extends Controller
             $newGame->consoles()->attach($data['consoles']);
         }
 
-        return redirect()->route('projects.show', $newGame);
+        if ($request->has('genres')) {
+            $newGame->consoles()->attach($data['genres']);
+        }
+
+        return redirect()->route('admin.games.show', $newGame);
     }
 
     /**
@@ -116,7 +130,11 @@ class GameController extends Controller
      */
     public function edit(Game $game)
     {
-        //
+        $consoles = Console::orderBy('name')->get();;
+        $genres = Genre::orderBy('name')->get();;
+        $developers = Developer::orderBy('name')->get();;
+
+        return view('admin.games.edit', compact('game', 'consoles', 'genres', 'developers'));
     }
 
     /**
@@ -124,16 +142,64 @@ class GameController extends Controller
      */
     public function update(Request $request, Game $game)
     {
-        //
+        $validated = $request->validate([
+            'title' => ['required', 'string', 'max:255'],
+            'developer_id' => ['required', 'exists:developers,id'],
+            'short_description' => ['required', 'string'],
+            'release_date' => ['required', 'date'],
+            'cover_image' => ['nullable', 'image', 'max:2048'],
+            'consoles' => ['required', 'array'],
+            'genres' => ['required', 'array'],
+        ], [
+            'title.required' => 'Il titolo è obbligatorio!',
+            'title.max' => 'Il titolo non può superare i 255 caratteri.',
+
+            'developer_id.required' => 'Devi selezionare uno sviluppatore.',
+            'developer_id.exists' => 'Lo sviluppatore selezionato non esiste.',
+
+            'short_description.required' => 'La descrizione è obbligatoria.',
+
+            'release_date.required' => 'La data di rilascio è obbligatoria.',
+
+            'cover_image.image' => 'Il file deve essere un\'immagine.',
+            'cover_image.max' => 'L\'immagine non può superare 2MB.',
+
+            'consoles.required' => 'Seleziona almeno una console!',
+            'genres.required' => 'Seleziona almeno un genere!',
+        ]);
+
+        $game->title = $validated['title'];
+        $game->developer_id = $validated['developer_id'];
+        $game->short_description = $validated['short_description'];
+        $game->release_date = $validated['release_date'];
+
+        if ($request->hasFile('cover_image')) {
+            Storage::disk('public')->delete($game->cover_image);
+            $img_path = $request->file('cover_image')->store('games/covers', 'public');
+            $game->cover_image = $img_path;
+        }
+
+        $game->save();
+
+        $game->consoles()->sync($validated['consoles']);
+        $game->genres()->sync($validated['genres']);
+
+        return redirect()->route('admin.games.show', $game)
+            ->with('success', 'Gioco aggiornato con successo!');
     }
+
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(Game $game)
     {
+        if ($game->cover_image) {
+            Storage::disk('public')->delete($game->cover_image);
+        }
+
         $game->delete();
 
-        return redirect()->route('games.index');
+        return redirect()->route('admin.games.index')->with('success', 'Gioco eliminato con successo!');
     }
 }

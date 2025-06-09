@@ -21,7 +21,11 @@
 
     <x-games-search-bar :action="route('admin.games.index')" />
 
-    <div class="mt-5">
+    <div class="d-flex flex-row-reverse mt-5">
+        <a href="{{ route('admin.games.create') }}" class="btn btn-primary">Aggiungi gioco</a>
+    </div>
+
+    <div class="mt-3">
         @if (!$games->count())
             <div class="text-center py-5">
                 <h2 class="text-center">Nessun gioco trovato</h2>
@@ -40,7 +44,7 @@
                             <td class="align-middle">{{ $game->title }}</td>
                             <td class="text-center">
                                 <a href="{{ route('admin.games.show', $game) }}" class="btn btn-outline-primary border-2">
-                                    visualizza gioco
+                                    Visualizza gioco
                                 </a>
                             </td>
                         </tr>

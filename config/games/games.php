@@ -8,6 +8,7 @@ return [
         'developer' => 'Kojima Productions',
         'consoles' => ['PlayStation 4', 'PlayStation 5', 'PC'],
         'genres' => ['action', 'adventure'],
+        'cover_image' => 'games/covers/death-stranding.jpg',
     ],
     [
         'title' => 'Persona 5 Royal',
@@ -16,6 +17,7 @@ return [
         'developer' => 'Atlus',
         'consoles' => ['PlayStation 4', 'Nintendo Switch', 'PC', 'Xbox One', 'Xbox Series X'],
         'genres' => ['rpg', 'adventure'],
+        'cover_image' => 'games/covers/persona-5-royal.jpg',
     ],
     [
         'title' => 'Minecraft',
@@ -24,6 +26,7 @@ return [
         'developer' => 'Mojang',
         'consoles' => ['PC', 'Xbox One', 'PlayStation 4', 'Nintendo Switch', 'Mobile'],
         'genres' => ['sandbox', 'survival'],
+        'cover_image' => 'games/covers/minecraft.jpg',
     ],
     [
         'title' => 'Elden Ring',
@@ -32,6 +35,7 @@ return [
         'developer' => 'FromSoftware',
         'consoles' => ['PC', 'PlayStation 4', 'PlayStation 5', 'Xbox One', 'Xbox Series X'],
         'genres' => ['rpg', 'action', 'adventure'],
+        'cover_image' => 'games/covers/elden-ring.jpg',
     ],
     [
         'title' => 'The Legend of Zelda: Breath of the Wild',
@@ -40,6 +44,7 @@ return [
         'developer' => 'Nintendo',
         'consoles' => ['Nintendo Switch'],
         'genres' => ['action', 'adventure'],
+        'cover_image' => 'games/covers/the-legend-of-zelda-breath-of-the-wild.jpg',
     ],
     [
         'title' => 'Halo Infinite',
@@ -48,6 +53,7 @@ return [
         'developer' => '343 Industries',
         'consoles' => ['Xbox One', 'Xbox Series X', 'PC'],
         'genres' => ['shooter', 'action'],
+        'cover_image' => 'games/covers/halo-infinite.jpg',
     ],
     [
         'title' => 'Animal Crossing: New Horizons',
@@ -56,6 +62,7 @@ return [
         'developer' => 'Nintendo',
         'consoles' => ['Nintendo Switch'],
         'genres' => ['simulation', 'sandbox'],
+        'cover_image' => 'games/covers/animal-crossing-new-horizons.jpg',
     ],
     [
         'title' => 'God of War Ragnarok',
@@ -64,6 +71,7 @@ return [
         'developer' => 'Santa Monica Studio',
         'consoles' => ['PlayStation 4', 'PlayStation 5'],
         'genres' => ['action', 'adventure'],
+        'cover_image' => 'games/covers/god-of-war-ragnarok.jpg',
     ],
     [
         'title' => 'Cyberpunk 2077',
@@ -72,6 +80,7 @@ return [
         'developer' => 'CD Projekt',
         'consoles' => ['PC', 'PlayStation 4', 'PlayStation 5', 'Xbox One', 'Xbox Series X'],
         'genres' => ['rpg', 'action'],
+        'cover_image' => 'games/covers/cyberpunk-2077.jpg',
     ],
     [
         'title' => 'Super Mario Odyssey',
@@ -80,6 +89,7 @@ return [
         'developer' => 'Nintendo',
         'consoles' => ['Nintendo Switch'],
         'genres' => ['platform', 'adventure'],
+        'cover_image' => 'games/covers/super-mario-odyssey.jpg',
     ],
     [
         'title' => 'Hades',
@@ -88,6 +98,7 @@ return [
         'developer' => 'Supergiant Games',
         'consoles' => ['PC', 'Nintendo Switch', 'PlayStation 4', 'PlayStation 5', 'Xbox One'],
         'genres' => ['roguelike', 'action'],
+        'cover_image' => 'games/covers/hades.jpg',
     ],
     [
         'title' => 'FIFA 23',
@@ -96,6 +107,7 @@ return [
         'developer' => 'EA Sports',
         'consoles' => ['PC', 'PlayStation 4', 'PlayStation 5', 'Xbox One', 'Xbox Series X'],
         'genres' => ['sports'],
+        'cover_image' => 'games/covers/fifa-23.jpg',
     ],
     [
         'title' => 'Genshin Impact',
@@ -104,6 +116,7 @@ return [
         'developer' => 'miHoYo',
         'consoles' => ['PC', 'PlayStation 4', 'PlayStation 5', 'Mobile'],
         'genres' => ['rpg', 'action'],
+        'cover_image' => 'games/covers/genshin-impact.jpg',
     ],
     [
         'title' => 'Sekiro: Shadows Die Twice',
@@ -112,6 +125,7 @@ return [
         'developer' => 'FromSoftware',
         'consoles' => ['PC', 'PlayStation 4', 'Xbox One'],
         'genres' => ['action', 'adventure'],
+        'cover_image' => 'games/covers/sekiro-shadows-die-twice.jpg',
     ],
     [
         'title' => 'Stardew Valley',
@@ -120,6 +134,7 @@ return [
         'developer' => 'ConcernedApe',
         'consoles' => ['PC', 'PlayStation 4', 'Xbox One', 'Nintendo Switch', 'Mobile'],
         'genres' => ['simulation', 'rpg'],
+        'cover_image' => 'games/covers/stardew-valley.jpg',
     ],
     [
         'title' => 'Fortnite',
@@ -128,6 +143,7 @@ return [
         'developer' => 'Epic Games',
         'consoles' => ['PC', 'PlayStation 4', 'PlayStation 5', 'Xbox One', 'Xbox Series X', 'Nintendo Switch'],
         'genres' => ['battle_royale', 'shooter'],
+        'cover_image' => 'games/covers/fortnite.jpg',
     ],
     [
         'title' => 'Among Us',
@@ -136,6 +152,7 @@ return [
         'developer' => 'InnerSloth',
         'consoles' => ['PC', 'Mobile', 'Nintendo Switch'],
         'genres' => ['party', 'strategy'],
+        'cover_image' => 'games/covers/among-us.jpg',
     ],
     [
         'title' => 'Cuphead',
@@ -144,6 +161,7 @@ return [
         'developer' => 'Studio MDHR',
         'consoles' => ['PC', 'Xbox One', 'Nintendo Switch', 'PlayStation 4'],
         'genres' => ['platform', 'action'],
+        'cover_image' => 'games/covers/cuphead.jpg',
     ],
     [
         'title' => 'Dark Souls III',
@@ -152,6 +170,7 @@ return [
         'developer' => 'FromSoftware',
         'consoles' => ['PC', 'PlayStation 4', 'Xbox One'],
         'genres' => ['rpg', 'action'],
+        'cover_image' => 'games/covers/dark-souls-iii.jpg',
     ],
     [
         'title' => 'League of Legends',
@@ -160,6 +179,7 @@ return [
         'developer' => 'Riot Games',
         'consoles' => ['PC'],
         'genres' => ['strategy', 'mmo'],
+        'cover_image' => 'games/covers/league-of-legends.jpg',
     ],
     [
         'title' => 'The Witcher 3: Wild Hunt',
@@ -168,6 +188,7 @@ return [
         'developer' => 'CD Projekt',
         'consoles' => ['PC', 'PlayStation 4', 'Xbox One', 'Nintendo Switch'],
         'genres' => ['rpg', 'action'],
+        'cover_image' => 'games/covers/the-witcher-3-wild-hunt.jpg',
     ],
     [
         'title' => 'Red Dead Redemption 2',
@@ -176,6 +197,7 @@ return [
         'developer' => 'Rockstar Games',
         'consoles' => ['PC', 'PlayStation 4', 'Xbox One'],
         'genres' => ['adventure', 'action'],
+        'cover_image' => 'games/covers/red-dead-redemption-2.jpg',
     ],
     [
         'title' => 'Horizon Forbidden West',
@@ -184,6 +206,7 @@ return [
         'developer' => 'Guerrilla Games',
         'consoles' => ['PlayStation 4', 'PlayStation 5'],
         'genres' => ['action', 'adventure'],
+        'cover_image' => 'games/covers/horizon-forbidden-west.jpg',
     ],
     [
         'title' => 'Terraria',
@@ -192,6 +215,7 @@ return [
         'developer' => 'Re-Logic',
         'consoles' => ['PC', 'PlayStation 4', 'Xbox One', 'Nintendo Switch', 'Mobile'],
         'genres' => ['sandbox', 'adventure'],
+        'cover_image' => 'games/covers/terraria.jpg',
     ],
     [
         'title' => 'Resident Evil Village',
@@ -200,6 +224,7 @@ return [
         'developer' => 'Capcom',
         'consoles' => ['PC', 'PlayStation 4', 'PlayStation 5', 'Xbox One', 'Xbox Series X'],
         'genres' => ['horror', 'action'],
+        'cover_image' => 'games/covers/resident-evil-village.jpg',
     ],
     [
         'title' => 'Doom Eternal',
@@ -208,6 +233,7 @@ return [
         'developer' => 'id Software',
         'consoles' => ['PC', 'PlayStation 4', 'PlayStation 5', 'Xbox One', 'Xbox Series X'],
         'genres' => ['shooter', 'action'],
+        'cover_image' => 'games/covers/doom-eternal.jpg',
     ],
     [
         'title' => 'Assassin\'s Creed Valhalla',
@@ -216,6 +242,7 @@ return [
         'developer' => 'Ubisoft',
         'consoles' => ['PC', 'PlayStation 4', 'PlayStation 5', 'Xbox One', 'Xbox Series X'],
         'genres' => ['rpg', 'adventure'],
+        'cover_image' => 'games/covers/assassins-creed-valhalla.jpg',
     ],
     [
         'title' => 'Overwatch',
@@ -224,6 +251,7 @@ return [
         'developer' => 'Blizzard Entertainment',
         'consoles' => ['PC', 'PlayStation 4', 'Xbox One', 'Nintendo Switch'],
         'genres' => ['shooter', 'action'],
+        'cover_image' => 'games/covers/overwatch.jpg',
     ],
     [
         'title' => 'Bayonetta 3',
@@ -232,6 +260,7 @@ return [
         'developer' => 'PlatinumGames',
         'consoles' => ['Nintendo Switch'],
         'genres' => ['action', 'adventure'],
+        'cover_image' => 'games/covers/bayonetta-3.jpg',
     ],
     [
         'title' => 'No Man\'s Sky',
@@ -240,6 +269,7 @@ return [
         'developer' => 'Hello Games',
         'consoles' => ['PC', 'PlayStation 4', 'PlayStation 5', 'Xbox One', 'Xbox Series X'],
         'genres' => ['adventure', 'simulation'],
+        'cover_image' => 'games/covers/no-mans-sky.jpg',
     ],
     [
         'title' => 'Celeste',
@@ -248,5 +278,6 @@ return [
         'developer' => 'Maddy Makes Games',
         'consoles' => ['PC', 'PlayStation 4', 'Xbox One', 'Nintendo Switch'],
         'genres' => ['platform', 'adventure'],
+        'cover_image' => 'games/covers/celeste.jpg',
     ],
 ];

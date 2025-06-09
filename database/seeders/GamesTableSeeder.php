@@ -22,22 +22,28 @@ class GamesTableSeeder extends Seeder
 
             $developer = Developer::where('name', $game['developer'])->first();
 
-            $newgame = Game::create([
-                'title' => $game['title'],
-                'developer_id' => $developer?->id,
-                'short_description' => $game['description'],
-                'release_date' => $game['release_date'],
-            ]);
+            $newGame = new Game();
+
+            $newGame->title = $game['title'];
+            $newGame->developer_id = $developer->id;
+            $newGame->short_description = $game['description'];
+            $newGame->release_date = $game['release_date'];
+
+            if (array_key_exists('cover_image', $game)) {
+                $newGame->cover_image = $game['cover_image'];
+            }
+
+            $newGame->save();
 
             if (!empty($game['consoles'])) {
                 $consoleIds = Console::whereIn('name', $game['consoles'])->pluck('id');
-                $newgame->consoles()->sync($consoleIds);
+                $newGame->consoles()->sync($consoleIds);
             }
 
             // Agganciare generi esistenti
             if (!empty($game['genres'])) {
                 $genreIds = Genre::whereIn('name', $game['genres'])->pluck('id');
-                $newgame->genres()->sync($genreIds);
+                $newGame->genres()->sync($genreIds);
             }
         }
     }

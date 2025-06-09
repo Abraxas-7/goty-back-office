@@ -4,8 +4,10 @@
 
 @section('content')
 
+    <x-edit-bar :return="route('admin.games.index')" :edit="route('admin.games.edit', $game)" :delete="route('admin.games.destroy', $game)" :item="$game" />
+
     <div class="row mt-4">
-        <div class="col-8">
+        <div class="col-9">
             <h2 class="">
                 {{ $game->title }}
             </h2>
@@ -40,8 +42,11 @@
 
         </div>
 
-        <div class="col-4">
-            immagine appena ho voglia di caricarla
+        <div class="col-3">
+            <div class="border border-2 rounded overflow-hidden shadow" style="aspect-ratio: 2/3;">
+                <img src="{{ asset('storage/' . $game->cover_image) }}" alt="{{ $game->title }}"
+                    class="img-fluid w-100 h-100 object-fit-cover">
+            </div>
         </div>
 
         <div class="pt-5">
