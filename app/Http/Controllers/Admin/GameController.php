@@ -29,7 +29,7 @@ class GameController extends Controller
 
         if ($request->filled('console')) {
             $query->whereHas('consoles', function ($q) use ($request) {
-                $q->where('consoles.id', $request->input('console'));;
+                $q->where('consoles.id', $request->input('console'));
             });
         }
 
@@ -78,9 +78,9 @@ class GameController extends Controller
      */
     public function create()
     {
-        $consoles = Console::orderBy('name')->get();;
-        $genres = Genre::orderBy('name')->get();;
-        $developers = Developer::orderBy('name')->get();;
+        $consoles = Console::orderBy('name')->get();
+        $genres = Genre::orderBy('name')->get();
+        $developers = Developer::orderBy('name')->get();
 
         return view('admin.games.create', compact('consoles', 'genres', 'developers'));
     }
@@ -90,31 +90,52 @@ class GameController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
+        $validated = $request->validate([
+            'title' => ['required', 'string', 'max:255'],
+            'developer_id' => ['required', 'exists:developers,id'],
+            'short_description' => ['required', 'string'],
+            'release_date' => ['required', 'date'],
+            'cover_image' => ['required', 'image', 'max:2048'],
+            'consoles' => ['required', 'array'],
+            'genres' => ['required', 'array'],
+        ], [
+            'title.required' => 'Il titolo è obbligatorio!',
+            'title.max' => 'Il titolo non può superare i 255 caratteri.',
+
+            'developer_id.required' => 'Devi selezionare uno sviluppatore.',
+            'developer_id.exists' => 'Lo sviluppatore selezionato non esiste.',
+
+            'short_description.required' => 'La descrizione è obbligatoria.',
+
+            'release_date.required' => 'La data di rilascio è obbligatoria.',
+
+            'cover_image.required' => 'L\'immagine è obbligatoria.',
+            'cover_image.image' => 'Il file deve essere un\'immagine.',
+            'cover_image.max' => 'L\'immagine non può superare 2MB.',
+
+            'consoles.required' => 'Seleziona almeno una console!',
+            'genres.required' => 'Seleziona almeno un genere!',
+        ]);
 
         $newGame = new Game();
+        $newGame->title = $validated['title'];
+        $newGame->developer_id = $validated['developer_id'];
+        $newGame->short_description = $validated['short_description'];
+        $newGame->release_date = $validated['release_date'];
 
-        $newGame->title = $data['title'];
-        $newGame->developer_id = $data['developer_id'];
-        $newGame->short_description = $data['short_description'];
-        $newGame->release_date = $data['release_date'];
-
-        if (array_key_exists('cover_image', $data)) {
-            $img_path = Storage::put('games/covers', $data['cover_image']);
+        if ($request->hasFile('cover_image')) {
+            $img_path = $request->file('cover_image')->store('games/covers', 'public');
             $newGame->cover_image = $img_path;
         }
 
         $newGame->save();
 
-        if ($request->has('consoles')) {
-            $newGame->consoles()->attach($data['consoles']);
-        }
+        $newGame->consoles()->attach($validated['consoles']);
+        $newGame->genres()->attach($validated['genres']);
 
-        if ($request->has('genres')) {
-            $newGame->consoles()->attach($data['genres']);
-        }
-
-        return redirect()->route('admin.games.show', $newGame);
+        return redirect()->route('admin.games.show', $newGame)
+            ->with('message', 'Gioco creato con successo!')
+            ->with('message_type', 'success');
     }
 
     /**
@@ -130,9 +151,9 @@ class GameController extends Controller
      */
     public function edit(Game $game)
     {
-        $consoles = Console::orderBy('name')->get();;
-        $genres = Genre::orderBy('name')->get();;
-        $developers = Developer::orderBy('name')->get();;
+        $consoles = Console::orderBy('name')->get();
+        $genres = Genre::orderBy('name')->get();
+        $developers = Developer::orderBy('name')->get();
 
         return view('admin.games.edit', compact('game', 'consoles', 'genres', 'developers'));
     }
@@ -185,7 +206,8 @@ class GameController extends Controller
         $game->genres()->sync($validated['genres']);
 
         return redirect()->route('admin.games.show', $game)
-            ->with('success', 'Gioco aggiornato con successo!');
+            ->with('message', 'Gioco aggiornato con successo!')
+            ->with('message_type', 'success');
     }
 
 
@@ -200,6 +222,8 @@ class GameController extends Controller
 
         $game->delete();
 
-        return redirect()->route('admin.games.index')->with('success', 'Gioco eliminato con successo!');
+        return redirect()->route('admin.games.index')
+            ->with('message', 'Gioco eliminato con successo!')
+            ->with('message_type', 'success');
     }
 }

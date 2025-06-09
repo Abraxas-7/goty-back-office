@@ -60,19 +60,19 @@ class ConsoleController extends Controller
      */
     public function store(Request $request)
     {
-        $console = Console::firstOrCreate([
-            'name' => $request->input('name'),
+        $validated = $request->validate([
+            'name' => 'required|string|max:255|unique:consoles,name',
+        ], [
+            'name.required' => 'Il nome è obbligatorio!',
+            'name.unique' => 'Questa console esiste già!',
+            'name.max' => 'Il nome non può superare i 255 caratteri.',
         ]);
 
-        if ($console->wasRecentlyCreated) {
-            return redirect()->route('admin.consoles.index')
-                ->with('message', 'Console aggiunta con successo.')
-                ->with('message_type', 'success');;
-        } else {
-            return redirect()->route('admin.consoles.index')
-                ->with('message', 'Console già esistente.')
-                ->with('message_type', 'error');;
-        }
+        $console = Console::create($validated);
+
+        return redirect()->route('admin.consoles.index')
+            ->with('message', 'Console aggiunta con successo.')
+            ->with('message_type', 'success');
     }
 
     /**
@@ -117,7 +117,7 @@ class ConsoleController extends Controller
 
         return redirect()->route('admin.consoles.index')
             ->with('message', 'Console aggiornata con successo!')
-            ->with('message_type', 'success');;
+            ->with('message_type', 'success');
     }
 
     /**
@@ -127,6 +127,8 @@ class ConsoleController extends Controller
     {
         $console->delete();
 
-        return redirect()->route('admin.consoles.index');
+        return redirect()->route('admin.consoles.index')
+            ->with('message', 'Console eliminata con successo!')
+            ->with('message_type', 'success');
     }
 }

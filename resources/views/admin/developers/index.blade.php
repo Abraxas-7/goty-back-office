@@ -97,6 +97,17 @@
         </div>
 
         <div class="col-4">
+            @if ($errors->any())
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <ul class="mb-0">
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
+
             <form action="{{ route('admin.developers.store') }}" method="POST">
                 @csrf
 
@@ -105,11 +116,11 @@
                 <div class="row d-flex justify-content-center">
                     <div class="col-10">
                         <label for="name" class="form-label">Nome nuova casa produttrice</label>
-                        <input type="text" class="form-control" id="name" name="name" required>
+                        <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}" required>
                     </div>
 
                     <div class="col-5">
-                        <button type="submit" class="btn btn-primary mt-3">Aggiungi console</button>
+                        <button type="submit" class="btn btn-primary mt-3">Aggiungi developer</button>
                     </div>
                 </div>
             </form>
