@@ -92,7 +92,7 @@ class GameController extends Controller
     {
         $validated = $request->validate([
             'title' => ['required', 'string', 'max:255'],
-            'developer_id' => ['required', 'exists:developers,id'],
+            'developer_id' => ['required'],
             'short_description' => ['required', 'string'],
             'release_date' => ['required', 'date'],
             'cover_image' => ['required', 'image', 'max:2048'],
@@ -103,7 +103,6 @@ class GameController extends Controller
             'title.max' => 'Il titolo non può superare i 255 caratteri.',
 
             'developer_id.required' => 'Devi selezionare uno sviluppatore.',
-            'developer_id.exists' => 'Lo sviluppatore selezionato non esiste.',
 
             'short_description.required' => 'La descrizione è obbligatoria.',
 
