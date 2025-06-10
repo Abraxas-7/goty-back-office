@@ -52,9 +52,8 @@ class SectionController extends Controller
         $section->section_order = $newOrder;
 
         if ($request->hasFile('image')) {
-            $path = 'games/sections/' . $game->id;
-            $filename = uniqid() . '.' . $request->file('image')->getClientOriginalExtension();
-            $section->section_image_path = $request->file('image')->storeAs($path, $filename);
+            $img_path = $request->file('image')->store('games/sections/' . $game->id, 'public');
+            $section->section_image_path = $img_path;
         }
 
         $section->save();
