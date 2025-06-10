@@ -12,17 +12,17 @@
             </a>
 
             <button type="button" class="border-0 bg-transparent text-danger p-0" data-bs-toggle="modal"
-                data-bs-target="#deleteGenreModal-{{ $item->id }}">
+                data-bs-target="#deleteGameModal-{{ $item->id }}">
                 <i class="bi bi-trash fs-5 px-2"></i>
             </button>
 
             <!-- Modale eliminazione form -->
-            <div class="modal fade" id="deleteGenreModal-{{ $item->id }}" tabindex="-1"
-                aria-labelledby="deleteGenreModalLabel-{{ $item->id }}" aria-hidden="true">
+            <div class="modal fade" id="deleteGameModal-{{ $item->id }}" tabindex="-1"
+                aria-labelledby="deleteGameModalLabel-{{ $item->id }}" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="deleteGenreModalLabel-{{ $item->id }}">
+                            <h1 class="modal-title fs-5" id="deleteGameModalLabel-{{ $item->id }}">
                                 Conferma eliminazione
                             </h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal"
