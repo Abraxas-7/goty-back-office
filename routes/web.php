@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\ConsoleController;
 use App\Http\Controllers\Admin\DeveloperController;
 use App\Http\Controllers\Admin\GameController;
 use App\Http\Controllers\Admin\GenreController;
+use App\Http\Controllers\Admin\SectionController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -21,16 +22,25 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::prefix('admin')->name('admin.')->group(function () {
-    Route::resource('games', GameController::class);
-    // ->middleware('auth', 'verified');
-    Route::resource('developers', DeveloperController::class);
-    // ->middleware('auth', 'verified');
-    Route::resource('consoles', ConsoleController::class);
-    // ->middleware('auth', 'verified');
-    Route::resource('genres', GenreController::class);
-    // ->middleware('auth', 'verified');
-});
+Route::prefix('admin')
+    ->name('admin.')
+    // ->middleware(['auth', 'verified'])
+    ->group(function () {
+        Route::resource('games', GameController::class);
+
+        Route::prefix('games/{game}')->group(function () {
+            Route::get('sections/create', [SectionController::class, 'create'])->name('sections.create');
+            Route::post('sections', [SectionController::class, 'store'])->name('sections.store');
+        });
+
+        Route::resource('sections', SectionController::class)->except(['index', 'create', 'store']);
+        Route::post('/sections/update-order', [SectionController::class, 'updateOrder'])->name('sections.update-order');
+
+
+        Route::resource('developers', DeveloperController::class);
+        Route::resource('consoles', ConsoleController::class);
+        Route::resource('genres', GenreController::class);
+    });
 
 
 require __DIR__ . '/auth.php';

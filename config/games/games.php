@@ -9,6 +9,44 @@ return [
         'consoles' => ['PlayStation 4', 'PlayStation 5', 'PC'],
         'genres' => ['action', 'adventure'],
         'cover_image' => 'games/covers/death-stranding.jpg',
+        'sections' => [
+            [
+                'title' => 'Un\'introduzione al mondo di Death Stranding',
+                'description' => 'In questo articolo introduttivo esploriamo le basi di Death Stranding: un gioco visionario creato da Hideo Kojima che sfida le convenzioni del genere open-world. Ambientato in un mondo post-apocalittico, il gioco trasporta il giocatore in un futuro devastato da un evento soprannaturale, dove la linea tra la vita e la morte si è dissolta. Attraverso questa introduzione, comprenderemo la visione unica del regista e come Death Stranding riesca a fondere narrazione, esplorazione e gameplay in un\'esperienza senza precedenti.',
+                'section_order' => 1,
+                'section_image_path' => 'games/sections/1/death-stranding-intro.jpg',
+            ],
+            [
+                'title' => 'Esplorazione e connessione: il gameplay di Death Stranding',
+                'description' => 'Il gameplay di Death Stranding è un perfetto esempio di come Kojima riesca a trasformare concetti semplici in esperienze significative. Nei panni di Sam Porter Bridges, il giocatore deve trasportare carichi vitali attraverso un ambiente ostile, utilizzando strumenti come scale, corde e veicoli. Tuttavia, l\'elemento più rivoluzionario è il “Social Strand System”, che permette ai giocatori di aiutarsi a vicenda indirettamente, creando una rete invisibile di connessioni. Esamineremo come queste meccaniche rendano ogni passo un atto di sopravvivenza e cooperazione.',
+                'section_order' => 2,
+                'section_image_path' => 'games/sections/1/death-stranding-gameplay.jpg',
+            ],
+            [
+                'title' => 'Il mondo di Death Stranding: paesaggi e misteri',
+                'description' => 'Uno degli aspetti più affascinanti di Death Stranding è la sua straordinaria costruzione del mondo. Le terre desolate, modellate da fenomeni atmosferici unici e da creature ultraterrene come i BT (Beached Things), creano un paesaggio tanto inquietante quanto affascinante. Analizzeremo come l\'uso di paesaggi mozzafiato, musiche evocative e dettagli minuziosi riescano a trasportare il giocatore in un viaggio immersivo che va oltre la semplice esplorazione.',
+                'section_order' => 3,
+                'section_image_path' => 'games/sections/1/death-stranding-world.jpg',
+            ],
+            [
+                'title' => 'Una trama profonda e misteriosa',
+                'description' => 'La storia di Death Stranding è complessa, stratificata e spesso criptica, un vero marchio di fabbrica per Kojima. Sam Porter Bridges, interpretato da Norman Reedus, è solo uno dei tanti personaggi memorabili: da Fragile a Higgs, ognuno porta con sé un bagaglio di misteri e drammi personali. In questa sezione ci addentreremo nella trama principale e nei temi centrali — come la connessione umana, la perdita e la speranza — per comprendere come la narrazione di Death Stranding riesca a toccare corde profonde.',
+                'section_order' => 4,
+                'section_image_path' => 'games/sections/1/death-stranding-story.jpg',
+            ],
+            [
+                'title' => 'La bellezza tecnica e l\'arte dietro Death Stranding',
+                'description' => 'Death Stranding è un capolavoro tecnico e artistico. Sfruttando il Decima Engine, il gioco offre un livello di dettaglio grafico mozzafiato: dalle animazioni fluide alle texture iper-realistiche. Ma oltre alla tecnica, Kojima riesce a trasformare ogni inquadratura in un\'opera d\'arte, con un uso sapiente della regia e della colonna sonora firmata Ludvig Forssell. In questo articolo discuteremo come la fusione tra grafica, suono e direzione artistica elevi il gioco a un\'esperienza cinematografica.',
+                'section_order' => 5,
+                'section_image_path' => 'games/sections/1/death-stranding-art.jpg',
+            ],
+            [
+                'title' => 'Conclusioni: un\'esperienza che lascia il segno',
+                'description' => 'Death Stranding non è un gioco per tutti, ma per chi saprà abbracciare la sua visione unica sarà un viaggio indimenticabile. In questa sezione conclusiva, rifletteremo su come l\'opera di Kojima riesca a spingere i confini del medium videoludico, sfidando il giocatore a ripensare il significato di “connessione”. Tra momenti di solitudine e cooperazione, Death Stranding offre un\'esperienza profonda e poetica che resterà nella memoria di chi l\'ha vissuta.',
+                'section_order' => 6,
+                'section_image_path' => 'games/sections/1/death-stranding-conclusion.jpg',
+            ],
+        ]
     ],
     [
         'title' => 'Persona 5 Royal',

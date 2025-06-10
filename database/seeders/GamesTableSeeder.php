@@ -40,10 +40,20 @@ class GamesTableSeeder extends Seeder
                 $newGame->consoles()->sync($consoleIds);
             }
 
-            // Agganciare generi esistenti
             if (!empty($game['genres'])) {
                 $genreIds = Genre::whereIn('name', $game['genres'])->pluck('id');
                 $newGame->genres()->sync($genreIds);
+            }
+
+            if (!empty($game['sections'])) {
+                foreach ($game['sections'] as $sectionData) {
+                    $newGame->sections()->create([
+                        'title' => $sectionData['title'],
+                        'description' => $sectionData['description'],
+                        'section_order' => $sectionData['section_order'],
+                        'section_image_path' => $sectionData['section_image_path'],
+                    ]);
+                }
             }
         }
     }

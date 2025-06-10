@@ -92,13 +92,15 @@
             <div class="col-12 mb-3">
                 <label for="cover_image" class="form-label">Immagine</label>
                 <input type="file" class="form-control" id="cover_image" name="cover_image" accept="image/*">
-                @if ($game->cover_image)
-                    <div class="mt-2">
-                        <img src="{{ asset('storage/' . $game->cover_image) }}" alt="{{ $game->title }}"
-                            class="img-fluid rounded border shadow" style="max-height: 300px;">
-                    </div>
-                @endif
-                <small class="text-muted">Carica una nuova immagine per sostituire quella attuale (opzionale)</small>
+                <div class="d-flex justify-content-center">
+                    @if ($game->cover_image)
+                        <div class="mt-2">
+                            <img src="{{ asset('storage/' . $game->cover_image) }}" alt="{{ $game->title }}"
+                                class="img-fluid rounded border shadow" style="max-height: 300px;">
+                        </div>
+                    @endif
+                </div>
+                <small class="text-muted">Carica una nuova immagine per sostituire quella attuale</small>
             </div>
 
             <div class="col-12 mb-5">
