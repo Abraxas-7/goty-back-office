@@ -82,7 +82,14 @@
                     @foreach ($game->sections as $section)
                         <li class="list-group-item d-flex justify-content-between align-items-center"
                             data-id="{{ $section->id }}">
-                            <span>{{ $section->title }}</span>
+                            <div class="d-flex align-items-center gap-2">
+                                @if ($section->section_image_path)
+                                    <img src="{{ asset('storage/' . $section->section_image_path) }}"
+                                        alt="{{ $section->title }}"
+                                        style="width: 160px; height: 90px; object-fit: cover; border-radius: 4px;">
+                                @endif
+                                <span>{{ $section->title }}</span>
+                            </div>
                             <span class="handle bi bi-list"></span>
                         </li>
                     @endforeach
@@ -91,16 +98,83 @@
             </div>
         @endif
 
-        <div class="pt-5">
+        <div class="mt-5">
+            <div class="d-flex pb-2">
+                <h2>Galleria</h2>
+            </div>
+            <div class="row align-items-center">
+                <div class="col-12">
+                    <form action="{{ route('admin.images.store', $game) }}" method="POST" enctype="multipart/form-data"
+                        class="d-flex align-items-center gap-2">
+                        @csrf
+                        <input type="file" class="form-control" name="image" required accept="image/*">
+                        <button type="submit" class="btn btn-success">Aggiungi</button>
+                    </form>
+                </div>
+            </div>
+            <div class="mb-3">
+                <small class="text-muted">Carica un immagine per il gioco</small>
+            </div>
+
+
             @if ($game->images->isEmpty())
-                <h2>Non ci sono immagini per questo gioco</h2>
+                <h5>Non ci sono immagini per questo gioco</h5>
             @else
-                <div class="row">
-                    qui ci sono le immagini
+                <div id="images-cards-container" class="row g-2">
+                    @foreach ($game->images as $image)
+                        <div class="col-4 py-1 position-relative">
+                            <x-image-card :path="$image->gallery_image_path" :alt="$game->title" />
+
+                            <div class="position-absolute top-0 end-0 py-2 px-2">
+                                <button type="button" class="border-0 bg-transparent text-danger p-0"
+                                    data-bs-toggle="modal" data-bs-target="#deleteImageModal-{{ $image->id }}">
+                                    <i class="fa fa-times px-1"></i>
+                                </button>
+
+                                <!-- Modale eliminazione form -->
+                                <div class="modal fade" id="deleteImageModal-{{ $image->id }}" tabindex="-1"
+                                    aria-labelledby="deleteImageModalLabel-{{ $image->id }}" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5"
+                                                    id="deleteImageModalLabel-{{ $image->id }}">
+                                                    Conferma eliminazione
+                                                </h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Chiudi"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                Sei sicuro di voler eliminare quest'immagine di
+                                                <strong>{{ $game->title }}</strong>?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">Annulla</button>
+                                                <form action="{{ route('admin.images.destroy', $image) }}" method="POST"
+                                                    class="d-inline">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger">
+                                                        Elimina
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
                 </div>
             @endif
         </div>
     </div>
+
+
+
+
+
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -153,6 +227,4 @@
             });
         });
     </script>
-
-
 @endsection

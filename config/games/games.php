@@ -46,6 +46,60 @@ return [
                 'section_order' => 6,
                 'section_image_path' => 'games/sections/1/death-stranding-conclusion.jpg',
             ],
+        ],
+        'images' => [
+            [
+                'gallery_image_path' => 'games/gallery/1/death-stranding-1.jpg',
+                'image_order' => 1,
+            ],
+            [
+                'gallery_image_path' => 'games/gallery/1/death-stranding-2.jpg',
+                'image_order' => 2,
+            ],
+            [
+                'gallery_image_path' => 'games/gallery/1/death-stranding-3.jpg',
+                'image_order' => 3,
+            ],
+            [
+                'gallery_image_path' => 'games/gallery/1/death-stranding-4.jpg',
+                'image_order' => 4,
+            ],
+            [
+                'gallery_image_path' => 'games/gallery/1/death-stranding-5.jpg',
+                'image_order' => 5,
+            ],
+            [
+                'gallery_image_path' => 'games/gallery/1/death-stranding-6.jpg',
+                'image_order' => 6,
+            ],
+            [
+                'gallery_image_path' => 'games/gallery/1/death-stranding-7.jpg',
+                'image_order' => 7,
+            ],
+            [
+                'gallery_image_path' => 'games/gallery/1/death-stranding-8.jpg',
+                'image_order' => 8,
+            ],
+            [
+                'gallery_image_path' => 'games/gallery/1/death-stranding-9.jpg',
+                'image_order' => 9,
+            ],
+            [
+                'gallery_image_path' => 'games/gallery/1/death-stranding-10.jpg',
+                'image_order' => 10,
+            ],
+            [
+                'gallery_image_path' => 'games/gallery/1/death-stranding-11.jpg',
+                'image_order' => 11,
+            ],
+            [
+                'gallery_image_path' => 'games/gallery/1/death-stranding-12.jpg',
+                'image_order' => 12,
+            ],
+            [
+                'gallery_image_path' => 'games/gallery/1/death-stranding-13.jpg',
+                'image_order' => 13,
+            ]
         ]
     ],
     [

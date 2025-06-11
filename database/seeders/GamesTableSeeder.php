@@ -55,6 +55,15 @@ class GamesTableSeeder extends Seeder
                     ]);
                 }
             }
+
+            if (!empty($game['images'])) {
+                foreach ($game['images'] as $imageData) {
+                    $newGame->images()->create([
+                        'gallery_image_path' => $imageData['gallery_image_path'],
+                        'image_order' => $imageData['image_order'],
+                    ]);
+                }
+            }
         }
     }
 }
