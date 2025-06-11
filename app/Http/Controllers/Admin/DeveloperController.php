@@ -105,7 +105,7 @@ class DeveloperController extends Controller
             ],
         ], [
             'name.required' => 'Il nome è obbligatorio!',
-            'name.unique' => 'Questa console esiste già!',
+            'name.unique' => 'Questa casa produtrice esiste già!',
             'name.max' => 'Il nome non può superare i 255 caratteri.',
         ]);
 

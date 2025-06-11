@@ -88,7 +88,7 @@
                                         alt="{{ $section->title }}"
                                         style="width: 160px; height: 90px; object-fit: cover; border-radius: 4px;">
                                 @endif
-                                <span>{{ $section->title }}</span>
+                                <span>{{ $section->title }} ({{ $section->section_order }})</span>
                             </div>
                             <span class="handle bi bi-list"></span>
                         </li>
@@ -113,7 +113,7 @@
                 </div>
             </div>
             <div class="mb-3">
-                <small class="text-muted">Carica un immagine per il gioco</small>
+                <small class="text-muted">Carica un immagine da aggiungere alla galleria</small>
             </div>
 
 

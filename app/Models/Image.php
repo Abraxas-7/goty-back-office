@@ -10,6 +10,6 @@ class Image extends Model
 
     public function game()
     {
-        return $this->belongsTo(Game::class)->orderBy('image_order');
+        return $this->belongsTo(Game::class);
     }
 }

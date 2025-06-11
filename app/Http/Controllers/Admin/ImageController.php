@@ -25,7 +25,7 @@ class ImageController extends Controller
         $newImage = new Image();
         $newImage->game_id = $game->id;
         $newImage->gallery_image_path = $path;
-        $newImage->image_order = $game->images()->max('image_order') ?? 0 + 1;
+        $newImage->image_order = ($game->images()->max('image_order') ?? 0) + 1;;
 
         $newImage->save();
 

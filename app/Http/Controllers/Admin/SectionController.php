@@ -121,7 +121,12 @@ class SectionController extends Controller
     {
         Storage::disk('public')->delete($section->section_image_path);
 
+        $deletedOrder = $section->section_order;
+
         $section->delete();
+
+        Section::where('section_order', '>', $deletedOrder)
+            ->decrement('section_order');
 
         return redirect()
             ->route('admin.games.show', $section->game_id)

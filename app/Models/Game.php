@@ -27,7 +27,7 @@ class Game extends Model
 
     public function images()
     {
-        return $this->hasMany(Image::class);
+        return $this->hasMany(Image::class)->orderBy('image_order');
     }
 
 
