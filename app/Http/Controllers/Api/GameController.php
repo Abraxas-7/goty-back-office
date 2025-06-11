@@ -108,7 +108,7 @@ class GameController extends Controller
 
     public function sections(Game $game)
     {
-        if ($game->images->isEmpty()) {
+        if ($game->sections->isEmpty()) {
             return response()->json([
                 'success' => true,
                 'data' => $game->sections,
