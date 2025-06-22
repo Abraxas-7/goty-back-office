@@ -9,6 +9,7 @@ use App\Models\Game;
 use App\Models\Genre;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class GameController extends Controller
 {
@@ -116,8 +117,11 @@ class GameController extends Controller
             'genres.required' => 'Seleziona almeno un genere!',
         ]);
 
+        $slug = Str::slug($request['title']);
+
         $newGame = new Game();
         $newGame->title = $validated['title'];
+        $newGame->slug = $slug;
         $newGame->developer_id = $validated['developer_id'];
         $newGame->short_description = $validated['short_description'];
         $newGame->release_date = $validated['release_date'];
@@ -187,6 +191,11 @@ class GameController extends Controller
             'consoles.required' => 'Seleziona almeno una console!',
             'genres.required' => 'Seleziona almeno un genere!',
         ]);
+
+        if ($request->title !== $game->title) {
+            $slug = Str::slug($request['title']);
+            $game->slug = $slug;
+        }
 
         $game->title = $validated['title'];
         $game->developer_id = $validated['developer_id'];

@@ -7,6 +7,7 @@ use App\Models\Developer;
 use App\Models\Game;
 use App\Models\Genre;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
 
 class GamesTableSeeder extends Seeder
@@ -22,9 +23,12 @@ class GamesTableSeeder extends Seeder
 
             $developer = Developer::where('name', $game['developer'])->first();
 
+            $slug = Str::slug($game['title']);
+
             $newGame = new Game();
 
             $newGame->title = $game['title'];
+            $newGame->slug = $slug;
             $newGame->developer_id = $developer->id;
             $newGame->short_description = $game['description'];
             $newGame->release_date = $game['release_date'];
