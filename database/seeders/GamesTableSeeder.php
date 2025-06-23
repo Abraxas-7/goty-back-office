@@ -28,6 +28,7 @@ class GamesTableSeeder extends Seeder
             $newGame = new Game();
 
             $newGame->title = $game['title'];
+            $newGame->rating = $game['rating'];
             $newGame->slug = $slug;
             $newGame->developer_id = $developer->id;
             $newGame->short_description = $game['description'];

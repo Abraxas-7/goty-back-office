@@ -99,6 +99,7 @@ class GameController extends Controller
             'cover_image' => ['required', 'image', 'max:2048'],
             'consoles' => ['required', 'array'],
             'genres' => ['required', 'array'],
+            'rating' => ['nullable', 'integer', 'min:1', 'max:100'],
         ], [
             'title.required' => 'Il titolo è obbligatorio!',
             'title.max' => 'Il titolo non può superare i 255 caratteri.',
@@ -115,6 +116,10 @@ class GameController extends Controller
 
             'consoles.required' => 'Seleziona almeno una console!',
             'genres.required' => 'Seleziona almeno un genere!',
+
+            'rating.integer' => 'Il voto deve essere un numero intero.',
+            'rating.min' => 'Il voto minimo è 1.',
+            'rating.max' => 'Il voto massimo è 100.',
         ]);
 
         $slug = Str::slug($request['title']);
@@ -122,6 +127,7 @@ class GameController extends Controller
         $newGame = new Game();
         $newGame->title = $validated['title'];
         $newGame->slug = $slug;
+        $newGame->rating = $validated['rating'];
         $newGame->developer_id = $validated['developer_id'];
         $newGame->short_description = $validated['short_description'];
         $newGame->release_date = $validated['release_date'];
@@ -174,6 +180,7 @@ class GameController extends Controller
             'cover_image' => ['nullable', 'image', 'max:2048'],
             'consoles' => ['required', 'array'],
             'genres' => ['required', 'array'],
+            'rating' => ['nullable', 'integer', 'min:1', 'max:100'],
         ], [
             'title.required' => 'Il titolo è obbligatorio!',
             'title.max' => 'Il titolo non può superare i 255 caratteri.',
@@ -190,6 +197,10 @@ class GameController extends Controller
 
             'consoles.required' => 'Seleziona almeno una console!',
             'genres.required' => 'Seleziona almeno un genere!',
+
+            'rating.integer' => 'Il voto deve essere un numero intero.',
+            'rating.min' => 'Il voto minimo è 1.',
+            'rating.max' => 'Il voto massimo è 100.',
         ]);
 
         if ($request->title !== $game->title) {
@@ -201,6 +212,7 @@ class GameController extends Controller
         $game->developer_id = $validated['developer_id'];
         $game->short_description = $validated['short_description'];
         $game->release_date = $validated['release_date'];
+        $game->rating = $validated['rating'];
 
         if ($request->hasFile('cover_image')) {
             Storage::disk('public')->delete($game->cover_image);

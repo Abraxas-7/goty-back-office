@@ -53,6 +53,12 @@ class GameController extends Controller
                 case 'updated_oldest':
                     $query->orderBy('updated_at', 'asc');
                     break;
+                case 'rating_desc':
+                    $query->whereNotNull('rating')->orderByDesc('rating');
+                    break;
+                case 'rating_asc':
+                    $query->whereNotNull('rating')->orderBy('rating', 'asc');
+                    break;
             }
         }
 

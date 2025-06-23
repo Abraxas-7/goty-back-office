@@ -21,10 +21,17 @@
         @csrf
         @method('PUT')
         <div class="row">
-            <div class="col-10 mb-3">
+            <div class="col-8 mb-3">
                 <label for="title" class="form-label">Titolo</label>
                 <input type="text" class="form-control" id="title" name="title"
                     value="{{ old('title', $game->title) }}" required>
+            </div>
+
+            <div class="col-2 mb-3">
+                <label for="rating" class="form-label">Voto Metacritic</label>
+                <input type="number" class="form-control" id="rating" name="rating" min="1" max="100"
+                    value="{{ old('rating', $game->rating) }}">
+                <small class="text-muted">Inserisci un valore da 1 a 100</small>
             </div>
 
             <div class="col-2 mb-3">
