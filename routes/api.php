@@ -14,6 +14,7 @@ Route::get('/user', function (Request $request) {
 Route::prefix('games')->group(function () {
     Route::get('/', [GameController::class, 'index']);
     Route::get('/{id}', [GameController::class, 'show']);
+    Route::get('/slug/{slug}', [GameController::class, 'showBySlug']);
 
     Route::get('{game}/images', [GameController::class, 'images']);
     Route::get('{game}/sections', [GameController::class, 'sections']);

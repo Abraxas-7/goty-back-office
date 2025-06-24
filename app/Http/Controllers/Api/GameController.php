@@ -64,7 +64,7 @@ class GameController extends Controller
 
         $games = $query
             ->with(['consoles', 'genres', 'developer'])
-            ->paginate(20)
+            ->paginate(24)
             ->withQueryString();
 
         if ($games->count() === 0) {
@@ -83,6 +83,23 @@ class GameController extends Controller
     public function show($id)
     {
         $game = Game::with(['developer', 'genres', 'consoles'])->find($id);
+
+        if (!$game) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Gioco non trovato.',
+            ], 404);
+        }
+
+        return response()->json([
+            'success' => true,
+            'data' => $game,
+        ]);
+    }
+
+    public function showBySlug($slug)
+    {
+        $game = Game::with(['developer', 'genres', 'consoles'])->where('slug', $slug)->first();
 
         if (!$game) {
             return response()->json([
