@@ -25,7 +25,7 @@ Route::middleware('auth')->group(function () {
 
 Route::prefix('admin')
     ->name('admin.')
-    // ->middleware(['auth', 'verified'])
+    ->middleware(['auth', 'verified'])
     ->group(function () {
         Route::resource('games', GameController::class);
 
